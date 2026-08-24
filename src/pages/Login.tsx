@@ -49,7 +49,7 @@ export default function Login() {
       </AnimatePresence>
 
       {/* ── Floating Main Card ── */}
-      <div className="w-full max-w-[950px] h-[780px] bg-paper rounded-[2.5rem] shadow-2xl flex flex-col lg:flex-row overflow-hidden relative z-10">
+      <div className="w-full max-w-[900px] h-[640px] max-h-[95vh] bg-paper rounded-[2.5rem] shadow-2xl flex flex-col lg:flex-row overflow-hidden relative z-10">
         
         {/* Back Button Overlay */}
         <div className="absolute top-6 left-6 z-50">
@@ -79,21 +79,48 @@ export default function Login() {
           {/* Subtle gradient overlay to match reference dark vibes */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none z-0" />
           
-          {/* Centered Text Overlay */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-white z-10 px-8 text-center pointer-events-none">
+          {/* Top Text Overlay */}
+          <div className="absolute top-12 left-0 right-0 flex flex-col items-center justify-start text-white z-10 px-8 text-center pointer-events-none">
             <AnimatePresence mode="wait">
               <motion.div
-                key={`text-${role}`}
-                initial={{ opacity: 0, y: 15 }}
+                key={`top-text-${role}`}
+                initial={{ opacity: 0, y: -15 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -15 }}
                 transition={{ duration: 0.5 }}
               >
-                <h2 className="text-4xl font-black mb-3">
+                <h2 className="text-2xl font-black mb-1">
                   Hi {role === 'designer' ? 'Designer' : 'Manufacturer'}
                 </h2>
-                <p className="text-white/80 text-lg font-medium">
+                <p className="text-white/70 text-sm font-medium">
                   Welcome to the Room
+                </p>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Centered Text Overlay */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-white z-10 px-8 text-center pointer-events-none">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`center-text-${mode}-${otpSent}`}
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 1.05 }}
+                transition={{ duration: 0.5 }}
+                className="flex flex-col items-center"
+              >
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight mb-2 drop-shadow-xl whitespace-nowrap">
+                  {otpSent 
+                    ? 'Check your inbox'
+                    : mode === 'login' 
+                      ? 'Welcome back' 
+                      : 'Create your account'}
+                </h1>
+                <p className="text-white/80 text-sm sm:text-base font-medium drop-shadow-md max-w-sm">
+                  {otpSent 
+                    ? 'We sent a temporary login code to verify your identity.' 
+                    : 'Enter your details to access the exclusive community and get started.'}
                 </p>
               </motion.div>
             </AnimatePresence>
@@ -113,7 +140,7 @@ export default function Login() {
         </div>
 
         {/* ── Right Side: Form Container ── */}
-        <div className="w-full lg:w-[45%] flex flex-col justify-center px-8 sm:px-14 py-8 relative bg-[#fdfaf6]">
+        <div className="w-full lg:w-[45%] flex flex-col justify-center px-6 sm:px-10 py-6 relative bg-[#fdfaf6] overflow-hidden">
           
           <motion.div
             initial={{ opacity: 0, x: 20 }}
@@ -121,19 +148,6 @@ export default function Login() {
             transition={{ duration: 0.5 }}
             className="w-full max-w-sm mx-auto"
           >
-            {/* Header */}
-            <div className="text-center mb-6">
-              <h1 className="text-4xl font-black tracking-tight mb-2 text-ink">
-                {otpSent 
-                  ? 'Check your inbox'
-                  : mode === 'login' 
-                    ? 'Welcome back' 
-                    : 'Create an account'}
-              </h1>
-              <p className="text-ink/60 text-sm font-medium">
-                {otpSent ? 'We sent a temporary login code.' : 'Enter your details to get started'}
-              </p>
-            </div>
 
             {/* Role Switch (Only in Signup Mode and before OTP) */}
             <AnimatePresence mode="wait">
@@ -142,7 +156,7 @@ export default function Login() {
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: 'auto' }}
                   exit={{ opacity: 0, height: 0 }}
-                  className="mb-6 overflow-hidden"
+                  className="mb-4 overflow-hidden"
                 >
                   <AuthSwitch role={role} onChange={setRole} />
                 </motion.div>
@@ -150,7 +164,7 @@ export default function Login() {
             </AnimatePresence>
 
             {/* The Form */}
-            <form className="space-y-5" onSubmit={(e) => { e.preventDefault(); setOtpSent(true); }}>
+            <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); setOtpSent(true); }}>
               
               <AnimatePresence mode="wait">
                 {!otpSent ? (
@@ -159,13 +173,13 @@ export default function Login() {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: 20 }}
-                    className="space-y-5"
+                    className="space-y-4"
                   >
                     {mode === 'signup' && (
                       <input 
                         type="text" 
                         required
-                        className="w-full bg-white border border-ink/10 rounded-xl py-3.5 px-4 text-ink text-sm focus:outline-none focus:ring-2 focus:ring-ink/20 transition-all placeholder:text-ink/40 font-medium shadow-sm"
+                        className="w-full bg-white border border-ink/10 rounded-xl py-3 px-4 text-ink text-sm focus:outline-none focus:ring-2 focus:ring-ink/20 transition-all placeholder:text-ink/40 font-medium shadow-sm"
                         placeholder={role === 'designer' ? 'Full Name' : 'Company Name'}
                       />
                     )}
@@ -173,14 +187,14 @@ export default function Login() {
                     <input 
                       type="email" 
                       required
-                      className="w-full bg-white border border-ink/10 rounded-xl py-3.5 px-4 text-ink text-sm focus:outline-none focus:ring-2 focus:ring-ink/20 transition-all placeholder:text-ink/40 font-medium shadow-sm"
+                      className="w-full bg-white border border-ink/10 rounded-xl py-3 px-4 text-ink text-sm focus:outline-none focus:ring-2 focus:ring-ink/20 transition-all placeholder:text-ink/40 font-medium shadow-sm"
                       placeholder="Email address"
                     />
 
                     <input 
                       type="tel" 
                       required
-                      className="w-full bg-white border border-ink/10 rounded-xl py-3.5 px-4 text-ink text-sm focus:outline-none focus:ring-2 focus:ring-ink/20 transition-all placeholder:text-ink/40 font-medium shadow-sm"
+                      className="w-full bg-white border border-ink/10 rounded-xl py-3 px-4 text-ink text-sm focus:outline-none focus:ring-2 focus:ring-ink/20 transition-all placeholder:text-ink/40 font-medium shadow-sm"
                       placeholder="Phone number"
                     />
 

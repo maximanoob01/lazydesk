@@ -101,12 +101,12 @@ const SLIDES: CoverflowSlide[] = [
 
 export default function HeroCarousel() {
   return (
-    <section className="py-6 pb-16 bg-paper overflow-hidden">
+    <section className="py-6 pb-16 bg-[#4a1b15] text-[#fdfaf6] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 text-center">
-        <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-ink mb-3">
+        <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tight text-[#fdfaf6] mb-3">
           Discover the collection
         </h2>
-        <p className="text-ink/60 text-base md:text-lg font-medium max-w-2xl mx-auto">
+        <p className="text-[#fdfaf6]/70 text-base md:text-lg font-medium max-w-2xl mx-auto">
           Explore the minds shaping the future of design.
         </p>
       </div>

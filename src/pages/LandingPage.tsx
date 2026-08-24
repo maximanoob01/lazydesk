@@ -2,6 +2,7 @@ import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import DiscoverSection from '../components/DiscoverSection';
 import InfoStrip from '../components/InfoStrip';
+import ForManufacturers from '../components/ForManufacturers';
 import HeroCarousel from '../components/HeroCarousel';
 import ValuePropPanel from '../components/ValuePropPanel';
 import HowItWorks from '../components/HowItWorks';
@@ -23,33 +24,21 @@ export default function LandingPage() {
         <DiscoverSection />
         
         <InfoStrip />
+
+        <ForManufacturers />
         
         <HeroCarousel />
         
-        <ValuePropPanel 
-          audience="Manufacturers"
-          headline="Your next collection shouldn't start with a hiring process."
-          ctaText="Find a Designer"
-          imageFirst={true}
-        />
-        
+
         <HowItWorks />
         
         <FeaturedDesigners />
         
-        <ValuePropPanel 
-          audience="Designers"
-          headline="Put your work in front of the people building what's next."
-          ctaText="Showcase Your Work"
-          imageFirst={false}
-        />
-        
+
         <FeaturedProjects />
         
         <TrustSection />
-        
-        <StatementSection />
-        
+
         <CTASection />
       </main>
       

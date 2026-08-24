@@ -57,7 +57,7 @@ export default function Navbar() {
           {/* Right Side */}
           <div className="hidden md:flex items-center gap-6 shrink-0">
             <div className="text-sm font-bold text-white bg-black/40 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/10 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] flex items-center">
-              <a href="#" className="hover:text-paper transition-colors">For Manufacturers</a>
+              <a href="#manufacturers" className="hover:text-paper transition-colors">For Manufacturers</a>
               <span className="mx-3 text-white/30">·</span>
               <a href="#" className="hover:text-paper transition-colors">For Designers</a>
             </div>
