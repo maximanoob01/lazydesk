@@ -15,14 +15,22 @@ export default function Login() {
   const [role, setRole] = useState<UserRole>('designer');
   const [otpSent, setOtpSent] = useState(false);
   const [keepSignedIn, setKeepSignedIn] = useState(true);
+  const [loadingPhase, setLoadingPhase] = useState<number>(0);
 
   const handleVerify = () => {
-    if (role === 'designer' && mode === 'signup') {
-      navigate('/onboarding/designer');
-    } else {
-      // Temporary fallback for manufacturer or regular login
-      navigate('/'); 
-    }
+    setLoadingPhase(1);
+    
+    setTimeout(() => setLoadingPhase(2), 1500);
+    setTimeout(() => setLoadingPhase(3), 3000);
+    setTimeout(() => setLoadingPhase(4), 4500);
+    
+    setTimeout(() => {
+      if (role === 'designer' && mode === 'signup') {
+        navigate('/onboarding/designer');
+      } else {
+        navigate('/'); 
+      }
+    }, 6000);
   };
 
   return (
@@ -164,6 +172,23 @@ export default function Login() {
             </AnimatePresence>
 
             {/* The Form */}
+            {loadingPhase > 0 ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="flex flex-col items-center justify-center py-16 space-y-8"
+              >
+                <div className="w-12 h-12 border-4 border-ink/20 border-t-ink rounded-full animate-spin" />
+                <div className="text-center h-8 relative w-full flex items-center justify-center overflow-hidden">
+                  <AnimatePresence mode="wait">
+                    {loadingPhase === 1 && <motion.p key="1" initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: -20, opacity: 0 }} className="absolute font-bold text-ink/70">Saving your details...</motion.p>}
+                    {loadingPhase === 2 && <motion.p key="2" initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: -20, opacity: 0 }} className="absolute font-bold text-ink/70">Creating account...</motion.p>}
+                    {loadingPhase === 3 && <motion.p key="3" initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: -20, opacity: 0 }} className="absolute font-bold text-ink/70">Finalizing...</motion.p>}
+                    {loadingPhase === 4 && <motion.p key="4" initial={{ y: 20, opacity: 0 }} animate={{ y: 0, opacity: 1 }} exit={{ y: -20, opacity: 0 }} className="absolute font-bold text-ink/70">Redirecting to onboarding page...</motion.p>}
+                  </AnimatePresence>
+                </div>
+              </motion.div>
+            ) : (
             <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); setOtpSent(true); }}>
               
               <AnimatePresence mode="wait">
@@ -279,6 +304,7 @@ export default function Login() {
                 {otpSent ? 'Verify & Continue' : mode === 'login' ? 'Send OTP Code' : 'Send OTP Code'}
               </button>
             </form>
+            )}
 
             {/* Toggle Mode Text (Hidden during OTP) */}
             {!otpSent && (

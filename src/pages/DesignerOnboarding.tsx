@@ -108,13 +108,49 @@ export default function DesignerOnboarding() {
   const nextStep = () => setStep(s => Math.min(s + 1, 5));
   const prevStep = () => setStep(s => Math.max(s - 1, 1));
 
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
   const handleSubmit = () => {
-    console.log("Submitting form data...", formData);
+    setIsSubmitted(true);
     localStorage.removeItem('designer_onboarding_draft');
-    // Simulated success redirect
-    alert("Application submitted successfully! Our curators will review your profile.");
-    navigate('/');
   };
+
+  if (isSubmitted) {
+    return (
+      <div className="min-h-screen bg-ink flex items-center justify-center p-6 text-center relative overflow-hidden font-sans">
+        <div className="absolute inset-0 opacity-20 pointer-events-none">
+          <img src={login1} className="w-full h-full object-cover grayscale" alt="Background" />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-ink/50 pointer-events-none z-0" />
+        
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="relative z-10 max-w-xl w-full bg-paper p-10 md:p-14 rounded-[2.5rem] shadow-2xl"
+        >
+          <div className="w-20 h-20 bg-green-500/10 text-green-600 rounded-full flex items-center justify-center mx-auto mb-8">
+            <Check size={40} strokeWidth={3} />
+          </div>
+          
+          <h1 className="text-3xl md:text-4xl font-black uppercase tracking-tight mb-4 text-ink">
+            Application Submitted
+          </h1>
+          
+          <p className="text-base text-ink/70 font-medium mb-10 leading-relaxed max-w-md mx-auto">
+            Your profile has been sent for review. Our curation team will evaluate your portfolio and experience. You will be notified via email soon.
+          </p>
+          
+          <Link 
+            to="/"
+            className="inline-flex w-full items-center justify-center bg-ink text-white font-bold px-8 py-4 rounded-xl hover:bg-ink/90 active:scale-[0.98] transition-all shadow-lg"
+          >
+            Return to Homepage
+          </Link>
+        </motion.div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#fdfaf6] flex flex-col md:flex-row font-sans text-ink">
