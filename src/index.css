@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Inter:wght@400;500;600;900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #D3B89E;
+  --color-ink: #17181A;
+  --color-slate: #6B7280;
+  --color-brass: #B08D57;
+  --color-hairline: #B59B82;
+
+  --font-sans: 'Inter', sans-serif;
+  --font-serif: 'Fraunces', serif;
+  --font-elegant: 'Playfair Display', serif;
+
+  /* shadcn-compatible aliases so the coverflow carousel compiles without changes */
+  --color-background: #D3B89E;
+  --color-foreground: #17181A;
+  --color-muted: #C4AA91;
+  --color-muted-foreground: #6B7280;
+  --color-ring: #B08D57;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+  }
+}
+
+/* Utilities for hiding scrollbar if needed */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
