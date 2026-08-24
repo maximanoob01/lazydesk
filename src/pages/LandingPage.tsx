@@ -4,12 +4,10 @@ import DiscoverSection from '../components/DiscoverSection';
 import InfoStrip from '../components/InfoStrip';
 import ForManufacturers from '../components/ForManufacturers';
 import HeroCarousel from '../components/HeroCarousel';
-import ValuePropPanel from '../components/ValuePropPanel';
 import HowItWorks from '../components/HowItWorks';
 import FeaturedDesigners from '../components/FeaturedDesigners';
 import FeaturedProjects from '../components/FeaturedProjects';
 import TrustSection from '../components/TrustSection';
-import StatementSection from '../components/StatementSection';
 import CTASection from '../components/CTASection';
 import Footer from '../components/Footer';
 

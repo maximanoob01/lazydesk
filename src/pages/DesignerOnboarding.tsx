@@ -67,7 +67,6 @@ const STEPS = [
 ];
 
 export default function DesignerOnboarding() {
-  const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState<FormData>(INITIAL_DATA);
 
