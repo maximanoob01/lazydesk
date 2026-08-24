@@ -248,38 +248,6 @@ export default function ManufacturerOnboarding() {
                       </div>
 
                       <div>
-                        <label className="block text-sm font-bold uppercase tracking-widest text-ink/70 mb-3">What are you hiring for?</label>
-                        <div className="flex gap-3">
-                          {['Footwear', 'Accessories', 'Both'].map(type => (
-                            <button
-                              key={type}
-                              type="button"
-                              onClick={() => updateFields({ hiringFor: type })}
-                              className={`flex-1 py-3 px-4 rounded-xl border text-sm font-bold transition-all text-center ${formData.hiringFor === type ? 'bg-ink border-ink text-white shadow-md' : 'bg-white border-ink/10 hover:border-ink/30 text-ink/70'}`}
-                            >
-                              {type}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-bold uppercase tracking-widest text-ink/70 mb-3">How do you want to find designers?</label>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                          {['Browse profiles', 'Get a curated shortlist', 'Post a project for bids', 'Not sure yet'].map(type => (
-                            <button
-                              key={type}
-                              type="button"
-                              onClick={() => updateFields({ findingPreference: type })}
-                              className={`py-3 px-4 rounded-xl border text-sm font-bold transition-all text-left ${formData.findingPreference === type ? 'bg-ink border-ink text-white shadow-md' : 'bg-white border-ink/10 hover:border-ink/30 text-ink/70'}`}
-                            >
-                              {type}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div>
                         <label className="block text-sm font-bold uppercase tracking-widest text-ink/70 mb-3">Years Operating</label>
                         <div className="grid grid-cols-2 gap-3">
                           {['Less than 1 year', '1–5 years', '5–15 years', '15+ years'].map(type => (
