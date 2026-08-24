@@ -25,8 +25,12 @@ export default function Login() {
     setTimeout(() => setLoadingPhase(4), 4500);
     
     setTimeout(() => {
-      if (role === 'designer' && mode === 'signup') {
-        navigate('/onboarding/designer');
+      if (mode === 'signup') {
+        if (role === 'designer') {
+          navigate('/onboarding/designer');
+        } else {
+          navigate('/onboarding/manufacturer');
+        }
       } else {
         navigate('/'); 
       }
